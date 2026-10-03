@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management System - Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body { background: linear-gradient(135deg, #1a237e 0%, #0d47a1 50%, #01579b 100%); min-height: 100vh; }
+        .login-card { background: white; border-radius: 12px; padding: 40px; max-width: 420px; margin: 60px auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .login-card h1 { text-align: center; color: #1a237e; margin-bottom: 8px; font-size: 1.6em; }
+        .login-card .subtitle { text-align: center; color: #888; margin-bottom: 30px; font-size: 0.95em; }
+        .demo-creds { background: #f5f5f5; border-radius: 8px; padding: 15px; margin-top: 20px; font-size: 0.88em; }
+        .demo-creds h4 { margin-bottom: 10px; color: #1a237e; }
+        .demo-creds code { background: #e8eaf6; padding: 2px 6px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h1>School Management</h1>
+        <p class="subtitle">Sign in to access your dashboard</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" required placeholder="Enter username" autofocus>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" required placeholder="Enter password">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; padding: 12px;">Login</button>
+        </form>
+
+        <div class="demo-creds">
+            <h4>Demo Credentials</h4>
+            <p><strong>Admin:</strong> <code>admin</code> / <code>admin123</code></p>
+            <p><strong>Teacher:</strong> <code>teacher1</code> / <code>teach123</code></p>
+            <p><strong>Student:</strong> <code>student1</code> / <code>pass123</code></p>
+        </div>
+    </div>
+</body>
+</html>
